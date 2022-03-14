@@ -6,12 +6,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
-import Header from './Header';
+import FormSection from './FormSection';
 import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
-  <Header />,
+  <FormSection />,
   document.getElementById('root')
 );
 
