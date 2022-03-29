@@ -1,17 +1,22 @@
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 import FormSection from './FormSection';
 import reportWebVitals from './reportWebVitals';
+import UserDisplay from './UserDisplay';
+
+// Import Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
 ReactDOM.render(
-  <FormSection />,
+  <>
+    <FormSection />
+    <UserDisplay />
+  </>,
   document.getElementById('root')
 );
 
