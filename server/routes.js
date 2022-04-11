@@ -28,15 +28,18 @@ client.connect(err => {
         });
         
         router.post('/add', (req, res) =>{
+        console.log('came to me');
+        console.log('Request: ', req.body);
         var id_name = parseInt(req.body.id_no)    
         var insert_values = {id: id_name, name: req.body.user_name, profession: req.body.profession}; 
-       
+        console.log('Data Added...')
+        console.log('Insert Values: ', insert_values); 
         dataCollection.insertOne(insert_values)
         .then(data =>{
-            // res.redirect('/');
+            res.redirect('http://localhost:3000');
             console.log(data);
-            client.close();
-        })
+            // client.close();
+        })  
         .catch(error => console.error(error))  
         });  
     });
