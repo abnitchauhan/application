@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router(); 
-const cors = require('cors');
+const cors = require('cors'); //Used for Cross Origin Policy
 const client = require('./db');
  
 
@@ -19,7 +19,7 @@ router.use(express.json());
 client.connect(err => {
     const dataCollection = client.db("users").collection("data"); 
 
-    result = dataCollection.find({}).toArray(function(err, result){ 
+    result = dataCollection.find({}).sort({$natural:-1}).limit(4).toArray(function(err, result){ 
         if(err) throw err; 
        
         router.get('/', (req,res) => {
@@ -28,17 +28,14 @@ client.connect(err => {
         });
         
         router.post('/add', (req, res) =>{
-        console.log('came to me');
-        console.log('Request: ', req.body);
+       
         var id_name = parseInt(req.body.id_no)    
-        var insert_values = {id: id_name, name: req.body.user_name, profession: req.body.profession}; 
-        console.log('Data Added...')
-        console.log('Insert Values: ', insert_values); 
+        var insert_values = {id: id_name, name: req.body.user_name, profession: req.body.profession};  
         dataCollection.insertOne(insert_values)
         .then(data =>{
-            res.redirect('http://localhost:3000');
-            console.log(data);
-            // client.close();
+            console.log('Data Added Succcessfully');
+            res.redirect('http://localhost:3000'); 
+          
         })  
         .catch(error => console.error(error))  
         });  
